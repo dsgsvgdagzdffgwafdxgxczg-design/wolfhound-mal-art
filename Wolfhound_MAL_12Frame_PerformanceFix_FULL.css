@@ -1376,10 +1376,9 @@ body.ownlist.anime {
 
   /* Paint the current frame on the hit element. The root's animated gates do not
      inherit into the full list. Other elements keep the full-size Holo fallback. */
-  /* Avoid descendant :has() rescans on cursor movement + scrolling. */
-  html:has(> body.ownlist.anime):hover,
-  body.ownlist.anime:hover,
-  body.ownlist.anime :where(:hover) {
+  html:has(> body.ownlist.anime):hover:not(:has(> body.ownlist.anime:hover)),
+  body.ownlist.anime:hover:not(:has(*:hover)),
+  body.ownlist.anime :where(:hover):not(:has(> :hover)) {
     --holo-candidate-0: var(--holo-gate-0) var(--holo-frame-0);
     --holo-candidate-1: var(--holo-gate-1) var(--holo-frame-1);
     --holo-candidate-2: var(--holo-gate-2) var(--holo-frame-2);
