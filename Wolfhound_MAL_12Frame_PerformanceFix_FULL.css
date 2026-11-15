@@ -1,0 +1,1546 @@
+/* Wolfhound's Anime List — Custom CSS for the Modern Night Shift theme. */
+html:has(> body.ownlist.anime) {
+  background-color: #e6e1ca;
+  background-image:
+    var(--holo-paper, none),
+    radial-gradient(ellipse at 9% 5%, #fbf3d7 0, transparent 58%),
+    radial-gradient(ellipse at 97% 84%, #b9c6a0 0, transparent 57%),
+    linear-gradient(140deg, #efe5c8, #e6e4cf 55%, #d0d9b7);
+  background-position: center;
+  background-size: 160px 160px, cover, cover, cover;
+  background-attachment: fixed;
+  color-scheme: only light !important;
+}
+
+body.ownlist.anime {
+  --holo-text: #fff8df;
+  --holo-cream: #fff7df;
+  --holo-muted: #f2e7c6;
+  --holo-gold: #ffe29a;
+  --holo-card: rgb(36 52 27 / .66);
+  --holo-nav: #304333;
+  --holo-border: rgb(102 78 43 / .34);
+  --holo-ink: #3e2c20;
+  --holo-ivory: linear-gradient(175deg, #fff8e5, #efe1bd 55%, #d9c391);
+  --holo-honey: linear-gradient(175deg, #fff0c3, #eed095 61%, #d3ae69);
+  --holo-leather: linear-gradient(153deg, #506047, #334833 47%, #263727 90%);
+  --holo-border-gold: #9b7945;
+  --holo-metal-edge: inset 0 1px rgb(255 251 222 / .82), inset 1px 0 rgb(255 232 177 / .40),
+    inset 0 -2px rgb(106 74 34 / .30), 0 2px 5px rgb(70 45 20 / .22);
+  --holo-leather-edge: inset 0 1px rgb(255 234 177 / .43), inset 1px 0 rgb(255 220 143 / .18),
+    inset 0 -2px rgb(9 27 16 / .64), 0 2px 5px rgb(38 41 20 / .25);
+  --holo-grid-width: 1600px;
+  --holo-wallpaper-width: clamp(720px, 100%, 2560px);
+  --holo-edge: 32px;
+  --holo-gutter: max(var(--holo-edge), calc((100% - var(--holo-grid-width)) / 2));
+  --holo-heading-width: min(1080px, calc(69% - var(--holo-gutter)));
+  --holo-mark-width: min(690px, calc(69% - var(--holo-gutter)));
+  --holo-banner-height: clamp(405px, 56.25vw, 1440px);
+  --holo-banner-right: 0px;
+  --holo-banner-left: 0px;
+  --holo-banner-position: 80% top;
+  --holo-banner-fade: linear-gradient(180deg, black 43%, rgb(0 0 0 / .8) 62%, rgb(0 0 0 / .25) 82%, transparent 97%);
+  --holo-banner-edge: linear-gradient(90deg, black, black);
+  min-width: 0 !important;
+  background-color: transparent !important;
+  background-attachment: scroll !important;
+  background-size: 0 0 !important;
+  background-position: 80% top !important;
+  background-repeat: no-repeat !important;
+  isolation: isolate;
+}
+
+body.ownlist.anime::before,
+body.ownlist.anime::after {
+  content: "";
+  position: absolute;
+  inset: 0 var(--holo-banner-right) auto var(--holo-banner-left);
+  height: var(--holo-banner-height);
+  pointer-events: none;
+  background-position: var(--holo-banner-position);
+  background-size: var(--holo-wallpaper-width) auto;
+  background-repeat: no-repeat;
+  mask-image: var(--holo-banner-fade), var(--holo-banner-edge);
+  mask-composite: intersect;
+}
+
+body.ownlist.anime::before {
+  z-index: -3;
+  background-image: inherit;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  body.ownlist.anime::after {
+    z-index: -2;
+    background-image: var(--holo-loose-hair, none);
+  }
+}
+
+/* Frame the catalogue with two different silhouettes of ripe wheat. */
+body.ownlist.anime .list-block::before,
+body.ownlist.anime .list-block::after {
+  content: "";
+  position: fixed;
+  bottom: -9vh;
+  z-index: -1;
+  width: clamp(104px, 15vw, 260px);
+  height: min(86vh, 760px);
+  pointer-events: none;
+  background-repeat: no-repeat;
+}
+
+body.ownlist.anime .list-block::before {
+  left: clamp(-55px, -3vw, -12px);
+  background-image: var(--holo-wheat-west), var(--holo-wheat-east);
+  background-size: auto 94%, auto 58%;
+  background-position: left bottom, 66% bottom;
+  opacity: .58;
+}
+
+body.ownlist.anime .list-block::after {
+  right: clamp(-55px, -2.5vw, -12px);
+  background-image: var(--holo-wheat-east), var(--holo-wheat-west);
+  background-size: auto 83%, auto 66%;
+  background-position: right bottom, 17% bottom;
+  opacity: .52;
+}
+
+/* Visible side-wheat motion. Applied unconditionally so browser motion preferences
+   cannot silently disable the user's explicitly requested wheat effect.
+   Only transforms animate; no background-size or image re-rasterization per frame. */
+body.ownlist.anime .list-block::before {
+  transform-origin: 28% 100%;
+  animation: wolfhound-wheat-west 6.4s ease-in-out -1.6s infinite !important;
+  backface-visibility: hidden;
+}
+body.ownlist.anime .list-block::after {
+  transform-origin: 72% 100%;
+  animation: wolfhound-wheat-east 7.1s ease-in-out -2.3s infinite !important;
+  backface-visibility: hidden;
+}
+@keyframes wolfhound-wheat-west {
+  0%, 100% { transform: translate3d(-2px, 0, 0) rotate(-3deg); }
+  50% { transform: translate3d(3px, -1px, 0) rotate(3.5deg); }
+}
+@keyframes wolfhound-wheat-east {
+  0%, 100% { transform: translate3d(2px, 0, 0) rotate(3deg); }
+  50% { transform: translate3d(-3px, -1px, 0) rotate(-3.5deg); }
+}
+
+body.ownlist.anime #footer-block,
+body.ownlist.anime footer:has(> #footer-block) {
+  display: none !important;
+}
+
+body.ownlist.anime .header {
+  box-sizing: border-box;
+  width: 100% !important;
+  height: auto;
+  min-height: 48px;
+  margin: 0 auto !important;
+  padding: 8px var(--holo-gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  z-index: 4;
+}
+
+body.ownlist.anime .header .header-title {
+  position: static;
+  order: -1;
+  width: 165px;
+  height: 24px;
+  margin: 0;
+  background: none !important;
+  filter: none;
+  font-size: 0;
+  text-indent: 0;
+  text-align: left;
+}
+
+/* Hide the visitor banner, including the manga link and sign-in prompt. */
+body.ownlist.anime .header :is(.header-menu, .header-info, #header-menu-dropdown) {
+  display: none !important;
+}
+
+body.ownlist.anime .list-menu-float {
+  display: none !important;
+}
+
+body.ownlist.anime .header::before {
+  display: none;
+}
+
+body.ownlist.anime #status-menu {
+  position: relative !important;
+  top: auto !important;
+  width: var(--holo-heading-width);
+  box-sizing: border-box;
+  margin: 0 auto 0 var(--holo-gutter);
+  padding: 0;
+  background: none;
+  border: 0;
+  box-shadow: none;
+  color-scheme: only light;
+}
+
+body.ownlist.anime #status-menu .status-menu {
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  gap: 7px;
+  margin: 0 !important;
+}
+
+body.ownlist.anime #status-menu.status-menu-container .status-menu > a.status-button,
+body.ownlist.anime #status-menu.status-menu-container #search-button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 37px;
+  box-sizing: border-box;
+  padding: 8px 13px !important;
+  border: 1px solid var(--holo-border-gold);
+  border-radius: 5px;
+  background: var(--holo-paper, none) 0 0 / 124px 124px, var(--holo-ivory) !important;
+  color: #39271c !important;
+  -webkit-text-fill-color: currentColor !important;
+  text-shadow: 0 1px rgb(255 252 233 / .63) !important;
+  font: 700 13px/1.25 "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  box-shadow: var(--holo-metal-edge);
+}
+
+body.ownlist.anime #status-menu.status-menu-container .status-menu > a.status-button.on {
+  color: #fff9e8 !important;
+  text-shadow: 0 1px #18291a !important;
+  background: linear-gradient(90deg, transparent, #e4b96b 32% 68%, transparent) bottom 2px center / 72% 1px no-repeat,
+    var(--holo-paper, none) 0 0 / 124px 124px, var(--holo-leather) !important;
+  border-color: var(--holo-border-gold);
+  box-shadow: var(--holo-leather-edge);
+}
+
+body.ownlist.anime #status-menu.status-menu-container .status-menu > a.status-button:not(.on):hover,
+body.ownlist.anime #status-menu.status-menu-container #search-button:hover {
+  background: var(--holo-paper, none) 0 0 / 124px 124px, var(--holo-honey) !important;
+  border-color: #805f32;
+}
+
+body.ownlist.anime #status-menu .search-container {
+  position: static;
+  white-space: nowrap;
+}
+
+body.ownlist.anime #status-menu :is(#search-button, #search-box) {
+  height: auto;
+  margin: 0;
+}
+
+body.ownlist.anime .list-unit .list-status-title {
+  --holo-mark-top: clamp(23px, 3.3vw, 60px);
+  position: relative;
+  container-type: inline-size;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  box-sizing: border-box;
+  width: var(--holo-mark-width);
+  height: auto;
+  margin: 0 auto 0 var(--holo-gutter);
+  padding: var(--holo-mark-top) 0 0;
+  text-align: center;
+  background: none;
+  color-scheme: only light;
+}
+
+body.ownlist.anime .list-unit .list-status-title .text {
+  grid-column: 1;
+  grid-row: 1;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: auto;
+  color: #304830 !important;
+  -webkit-text-fill-color: currentColor !important;
+  filter: none;
+  isolation: isolate;
+  font: 730 10px/1.4 "Segoe UI", system-ui, sans-serif;
+  letter-spacing: .18em;
+  text-align: center;
+  text-shadow: none;
+}
+
+body.ownlist.anime .list-unit .list-status-title .text::before {
+  content: "Wolfhound’s";
+  order: -2;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  aspect-ratio: 1184 / 272;
+  margin: 0;
+  color: transparent !important;
+  -webkit-text-fill-color: currentColor !important;
+  font: 600 clamp(22px, 14.2cqi, 102px)/1.35 "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  letter-spacing: .012em;
+  white-space: nowrap;
+  background: var(--holo-illustrated-title, none) center / contain no-repeat;
+}
+
+@media (forced-colors: active) {
+  body.ownlist.anime .list-unit .list-status-title .text::before {
+    color: CanvasText !important;
+    background: none;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  body.ownlist.anime .list-unit .list-status-title::before,
+  body.ownlist.anime .list-unit .list-status-title::after {
+    content: "";
+    position: absolute;
+    z-index: 1;
+    width: 23px;
+    height: 18px;
+    pointer-events: none;
+    opacity: 0;
+    background:
+      radial-gradient(ellipse at center, #fff8cf 17%, #c58a36 48%, transparent 76%) 0px 10px / 8px 3px,
+      radial-gradient(ellipse at center, #fff4bc 13%, #ad762e 45%, transparent 76%) 11px 0 / 7px 3px,
+      radial-gradient(ellipse at center, #fff8de 12%, #e8c56e 38%, transparent 73%) 18px 7px / 5px 2px;
+    background-repeat: no-repeat;
+  }
+
+  body.ownlist.anime .list-unit .list-status-title::before {
+    top: calc(var(--holo-mark-top) + 9.7cqw);
+    left: 6.5%;
+    animation: holo-wheat-kernels 9.8s linear .8s infinite;
+  }
+
+  body.ownlist.anime .list-unit .list-status-title::after {
+    top: calc(var(--holo-mark-top) + 3.7cqw);
+    left: 92%;
+    animation: holo-wheat-kernels 11.6s linear 2.6s infinite;
+  }
+}
+
+@keyframes holo-wheat-kernels {
+  0%, 14% { opacity: 0; transform: translate(0, 3px) rotate(-18deg) scale(.7); }
+  20% { opacity: .9; }
+  27% { opacity: .72; transform: translate(16px, -9px) rotate(5deg) scale(.88); }
+  35%, 100% { opacity: 0; transform: translate(38px, -18px) rotate(38deg) scale(.62); }
+}
+
+body.ownlist.anime .list-unit .list-status-title .text::after {
+  content: "ANIME LIST";
+  order: -1;
+  display: block;
+  width: auto;
+  height: auto;
+  margin: 5px 0 8px;
+  padding: 0 42px;
+  color: #644127;
+  font: 600 clamp(10px, 1vw, 13px)/1.5 "Segoe UI", system-ui, sans-serif;
+  letter-spacing: .42em;
+  background:
+    var(--holo-wheat, none) left center / 29px 21px no-repeat,
+    var(--holo-wheat, none) right center / 29px 21px no-repeat,
+    linear-gradient(#9a8150, #9a8150) left center / 7px 1px no-repeat,
+    linear-gradient(#9a8150, #9a8150) right center / 7px 1px no-repeat;
+  transform-origin: center;
+}
+
+body.ownlist.anime .list-table .list-table-header .header-title .link {
+  display: inline-block;
+  padding: 7px 11px !important;
+  margin: 0;
+  border: 1px solid var(--holo-border);
+  border-radius: 5px;
+  background: var(--holo-nav);
+  color: var(--holo-text) !important;
+  filter: none;
+  font: 600 12px/1.3 system-ui, sans-serif;
+}
+
+body.ownlist.anime .list-unit :is(.list-status-title .stats, .list-stats),
+body.ownlist.anime #advanced-options {
+  display: none !important;
+}
+
+/* The theme's wallpaper comes from MAL's background image setting. */
+body.ownlist.anime .list-table {
+  box-sizing: border-box;
+  display: grid;
+  --holo-columns: 3;
+  --holo-column-gap: 22px;
+  --holo-row-gap: 18px;
+  --holo-column: calc((100% - (var(--holo-columns) - 1) * var(--holo-column-gap)) / var(--holo-columns));
+  grid-template-columns: repeat(var(--holo-columns), minmax(0, 1fr));
+  align-items: stretch;
+  gap: var(--holo-row-gap) var(--holo-column-gap);
+  width: min(calc(100% - var(--holo-edge) * 2), var(--holo-grid-width));
+  margin: 0 auto;
+  padding: 0;
+  background: transparent;
+}
+
+body.ownlist.anime .list-table > tbody:first-child:not(.list-item) {
+  position: relative;
+  display: block;
+  grid-column: 1 / -1;
+  padding: clamp(66px, 5.4vw, 99px) 0 0;
+}
+
+/* WAGON: transparent original artwork, native animated 12-frame WebP.
+   Hosted on the public Wolfhound assets repo. No CSS frame repaints. */
+html:has(> body.ownlist.anime) {
+  --wolfhound-wagon-animation: url("https://raw.githubusercontent.com/dsgsvgdagzdffgwafdxgxczg-design/wolfhound-mal-art/main/assets/holo-lawrence-12frame-transparent.webp");
+}
+body.ownlist.anime .list-table > tbody:first-child:not(.list-item)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: calc(3px - var(--holo-row-gap));
+  left: 50%;
+  width: min(475px, calc(var(--holo-column) * .95));
+  aspect-ratio: 607 / 216;
+  transform: translateX(-50%);
+  z-index: 1;
+  pointer-events: none;
+  background-image: var(--wolfhound-wagon-animation) !important;
+  background-repeat: no-repeat !important;
+  background-position: center bottom !important;
+  background-size: contain !important;
+  animation: none !important;
+  will-change: auto;
+}
+
+body.ownlist.anime .list-table .list-table-header {
+  justify-content: flex-start;
+  gap: 6px;
+  color-scheme: only light;
+}
+
+body.ownlist.anime .list-table .list-table-header .header-title {
+  display: none;
+}
+
+body.ownlist.anime .list-table .list-table-header .header-title:has(.sort) {
+  display: block;
+  margin: 0;
+}
+
+body.ownlist.anime .list-table .list-table-header .header-title .sort {
+  margin: 0;
+  border-color: var(--holo-border-gold);
+  border-radius: 5px;
+  background: var(--holo-paper, none) 0 0 / 124px 124px, var(--holo-leather) !important;
+  color: #fff6dc !important;
+  -webkit-text-fill-color: currentColor !important;
+  font: 700 13px/1.25 "Palatino Linotype", "Book Antiqua", Georgia, serif;
+  text-shadow: 0 1px #1c2d1e;
+  box-shadow: var(--holo-leather-edge);
+}
+
+body.ownlist.anime .list-table .list-table-header .header-title .sort:is(:hover, :has(.sort-icon)) {
+  background: var(--holo-paper, none) 0 0 / 124px 124px, var(--holo-honey) !important;
+  color: #392519 !important;
+  text-shadow: 0 1px rgb(255 252 233 / .55);
+  box-shadow: var(--holo-metal-edge);
+}
+
+body.ownlist.anime .list-table .list-table-header .sort .sort-icon {
+  color: currentColor;
+}
+
+body.ownlist.anime .list-table > tbody.list-item {
+  display: block;
+  container: holo-card / inline-size;
+  width: 100%;
+  height: auto;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  overflow: visible;
+  border-radius: 12px;
+  background: var(--holo-card);
+  box-shadow: 0 0 0 1px rgb(118 101 57 / .27), 0 2px 3px rgb(35 41 20 / .22),
+              0 9px 19px -7px rgb(42 51 28 / .38), 0 24px 41px -23px rgb(42 51 28 / .43);
+}
+
+body.ownlist.anime .list-table > tbody.list-item:is(:hover, :focus-within) {
+  box-shadow: 0 0 0 1px rgb(174 133 64 / .75),
+              0 12px 22px -9px rgb(35 44 21 / .46);
+}
+
+@media (forced-colors: active) {
+  body.ownlist.anime .list-table > tbody.list-item:is(:hover, :focus-within) {
+    outline: 1px solid Highlight;
+  }
+}
+
+body.ownlist.anime .list-table > tbody.list-item::before {
+  content: none;
+}
+
+/* Reserve each optional row across the whole list when MAL supplies the field. */
+body.ownlist.anime .list-table:has(.data.title .rewatching) { --rewatching-track: 20px; }
+body.ownlist.anime .list-table:has(> .list-item > tr > .data.genre) { --genre-track: 55px; }
+body.ownlist.anime .list-table:has(> .list-item > tr > .data.demographic) { --demographic-track: 21px; }
+body.ownlist.anime .list-table:has(> .list-item > tr > .data.studio) { --studio-track: 21px; }
+body.ownlist.anime .list-table:has(> .list-item > tr > .data.airing-started) { --aired-track: 21px; }
+body.ownlist.anime .list-table:has(> .list-item > tr > .data.airing-finished) { --aired-end-track: 21px; }
+body.ownlist.anime .list-table:has(> .list-item > tr > .data.season) { --season-track: 21px; }
+body.ownlist.anime .list-table:has(> .list-item > tr > .data.rated) { --rating-track: 21px; }
+
+body.ownlist.anime .list-table .list-table-data {
+  --poster-width: min(38%, 184px);
+  --poster-inset: var(--poster-width);
+  --info-gutter: clamp(8px, 1vw, 16px);
+  --footer-height: 34px;
+  --title-size: clamp(17px, 1.37vw, 22px);
+  --title-lines: 4;
+  --footer-gap: 12px;
+  --divider-height: 12px;
+  --title-height: calc(var(--title-size) * 1.16 * var(--title-lines) + var(--divider-height));
+  --card-top: 18px;
+  --card-bottom: 3px;
+  --card-space: 10px;
+  --type-height: 21px;
+  --card-min-height: 258px;
+  --card-divider:
+    var(--holo-wheat, none) center bottom / 20px var(--divider-height) no-repeat border-box,
+    linear-gradient(90deg, transparent, #e7c67d 40%, transparent 42.5% 57.5%, #e7c67d 60%, transparent)
+      center bottom 5px / min(72%, 160px) 1px no-repeat border-box;
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: minmax(20px, 1fr) minmax(62px, 1.5fr) 24px auto 28px;
+  grid-template-rows:
+    [title] max-content
+    [genre] max-content
+    [rewatching] var(--rewatching-track, 0px)
+    [demographic] var(--demographic-track, 0px)
+    [space] minmax(var(--card-space), 1fr)
+    [studio] var(--studio-track, 0px)
+    [aired] var(--aired-track, 0px)
+    [aired-end] var(--aired-end-track, 0px)
+    [season] var(--season-track, 0px)
+    [rating] var(--rating-track, 0px)
+    [type] var(--type-height)
+    [footer-gap] var(--footer-gap)
+    [footer-detail] var(--footer-detail-height, 0px)
+    [footer] var(--footer-height)
+    [extra] 0;
+  align-items: center;
+  column-gap: 5px;
+  /* The flexible space absorbs shorter titles without pulling the metadata or footer up. */
+  min-height: max(var(--card-min-height), calc(
+    var(--card-top) + var(--card-bottom) + var(--card-space) + var(--type-height)
+    + var(--title-height) + var(--genre-track, 0px) + var(--rewatching-track, 0px) + var(--demographic-track, 0px)
+    + var(--studio-track, 0px) + var(--aired-track, 0px) + var(--aired-end-track, 0px) + var(--season-track, 0px)
+    + var(--rating-track, 0px) + var(--footer-gap) + var(--footer-detail-height, 0px) + var(--footer-height)
+  ));
+  height: 100%;
+  max-height: none;
+  margin: 0;
+  padding: var(--card-top) 12px var(--card-bottom) calc(var(--poster-inset) + 12px);
+  overflow: clip;
+  border-radius: inherit;
+  font: 550 12px/1.35 "Segoe UI", system-ui, sans-serif;
+  background:
+    var(--holo-paper, none) 0 0 / 120px 120px repeat,
+    radial-gradient(ellipse at 90% -12%, rgb(245 215 147 / .33), transparent 69%),
+    linear-gradient(155deg, rgb(180 199 121 / .15), transparent 60%),
+    linear-gradient(0deg, rgb(15 29 10 / .48), transparent 75%);
+}
+
+body.ownlist.anime .list-table .list-table-data::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgb(255 241 191 / .79), inset 0 2px 0 rgb(255 241 191 / .12),
+              inset 0 -1px 0 rgb(15 31 19 / .57),
+              inset -1px 0 0 rgb(218 193 120 / .32);
+  background: linear-gradient(90deg, transparent var(--poster-inset),
+    rgb(255 225 152 / .34) var(--poster-inset), transparent calc(var(--poster-inset) + 1px)) no-repeat;
+  background-size: 100% calc(100% - var(--footer-height) - var(--footer-detail-height, 0px) - 3px);
+  pointer-events: none;
+}
+
+body.ownlist.anime .list-table .list-table-data:not(:has(> .image)) {
+  --poster-inset: 0px;
+}
+
+body.ownlist.anime .list-table .list-table-data::before,
+body.ownlist.anime .list-table .list-table-data > .data.title::before,
+body.ownlist.anime .list-table .list-table-data > .data.title::after {
+  content: none;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data {
+  grid-column: 1 / -1;
+  grid-row: extra;
+  order: 0;
+  min-width: 0;
+  text-align: center !important;
+  overflow-wrap: anywhere;
+  color: var(--holo-muted);
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.title {
+  display: contents;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title > .link {
+  grid-column: 1 / -1;
+  grid-row: title;
+  position: static;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: var(--title-lines);
+  align-self: start;
+  width: auto;
+  height: auto;
+  max-height: var(--title-height);
+  margin: 0;
+  padding: 0 !important;
+  overflow: hidden;
+  font: 700 var(--title-size)/1.16 "Palatino Linotype", "Book Antiqua", Georgia, serif !important;
+  letter-spacing: -.002em;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  text-wrap: balance;
+  color: var(--holo-text) !important;
+  text-shadow: 0 1px 1px #192419, 0 2px 5px rgb(17 24 12 / .51);
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.genre { grid-row: genre; }
+body.ownlist.anime .list-table .list-table-data > .data.demographic { grid-row: demographic; }
+body.ownlist.anime .list-table .list-table-data .data.title > .link,
+body.ownlist.anime .list-table .list-table-data > .data.genre:not(:empty) {
+  border-bottom: var(--divider-height) solid transparent !important;
+  background: var(--card-divider);
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.genre, .demographic) {
+  align-self: start;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: start;
+  gap: 1px 8px;
+  padding: 0 2px !important;
+  max-height: 100%;
+  overflow: clip;
+  line-height: 21px;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.genre {
+  max-height: var(--genre-track, 0px);
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.genre, .demographic) a {
+  display: inline-block;
+  border: 0;
+  background: none;
+  color: #fff1c3 !important;
+  font: 650 13px/20px "Segoe UI", system-ui, sans-serif;
+  text-shadow: 0 1px 3px #1a2510;
+  white-space: nowrap;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.genre, .demographic) span {
+  height: 21px;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.genre, .demographic) a:hover {
+  color: var(--holo-gold) !important;
+  text-decoration: underline !important;
+  text-underline-offset: .19em;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.genre, .demographic) a:focus-visible {
+  outline-offset: -1px;
+}
+
+/* Native community scores share the poster end of the footer with saved scores. */
+body.ownlist.anime .list-table .list-table-data > .data:is([class*="score" i], [class*="average" i]):not(.score, [class*="diff" i], [class*="personal" i], [class*="user-score" i], [class*="my-score" i]),
+body.ownlist.anime .list-table .list-table-data::before {
+  position: absolute;
+  inset: auto auto 3px 0;
+  z-index: 2;
+  width: var(--poster-inset);
+  height: calc(var(--footer-height) + var(--footer-detail-height, 0px));
+  grid-column: auto;
+  grid-row: auto;
+  align-content: center;
+  text-align: center !important;
+  white-space: nowrap;
+  color: #ffe29a !important;
+  font: 700 12px/1.2 "Segoe UI", system-ui, sans-serif;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: .06em;
+  pointer-events: none;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is([class*="score" i], [class*="average" i]):not(.score, [class*="diff" i], [class*="personal" i], [class*="user-score" i], [class*="my-score" i]) a {
+  color: inherit !important;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is([class*="score" i], [class*="average" i]):not(.score, [class*="diff" i], [class*="personal" i], [class*="user-score" i], [class*="my-score" i]):not(:empty)::before {
+  content: "MAL ";
+}
+
+body.ownlist.anime .list-table .list-table-data:not(:has(> .data:is([class*="score" i], [class*="average" i]):not(.score, [class*="diff" i], [class*="personal" i], [class*="user-score" i], [class*="my-score" i]):not(:empty)))::before {
+  content: var(--holo-mal-score, none);
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.studio { grid-row: studio; }
+body.ownlist.anime .list-table .list-table-data > .data.airing-started { grid-row: aired; }
+body.ownlist.anime .list-table .list-table-data > .data.airing-finished { grid-row: aired-end; }
+body.ownlist.anime .list-table .list-table-data > .data.season { grid-row: season; }
+body.ownlist.anime .list-table .list-table-data > .data.rated { grid-row: rating; }
+body.ownlist.anime .list-table .list-table-data > .data.type { grid-row: type; }
+body.ownlist.anime .list-table .list-table-data > .data:is(.studio, .airing-started, .airing-finished, .season, .rated, .type) {
+  margin: 0 0 0 var(--info-gutter);
+  background: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: var(--holo-text);
+  font-size: 14px;
+  font-weight: 650;
+  line-height: 1.35;
+  text-align: left !important;
+  text-shadow: 0 1px 3px #1a2510;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.studio, .airing-started, .airing-finished, .season, .rated, .type)::before {
+  display: inline-block;
+  width: 74px;
+  padding-right: 0;
+  margin-right: .28em;
+  color: #f9d489;
+  font-weight: 630;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.rated::before {
+  content: "Rating:";
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.studio, .season) a {
+  color: var(--holo-text) !important;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .notes,
+body.ownlist.anime .list-table .list-table-data > .data.tags {
+  display: none !important;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.image {
+  position: absolute;
+  grid-column: auto;
+  grid-row: auto;
+  inset: 0 auto auto 0;
+  width: var(--poster-width);
+  height: calc(100% - var(--footer-height) - var(--footer-detail-height, 0px) - 3px);
+  pointer-events: auto;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.image > a {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: 12px 0 0 0;
+  background-color: rgb(16 23 12 / .44);
+  box-shadow: 3px 0 9px rgb(36 49 26 / .2);
+}
+
+body.ownlist.anime .list-table .list-table-data .data.image > a:focus-visible {
+  outline-offset: -3px;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.image > a::before {
+  pointer-events: none;
+  background-repeat: no-repeat;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.image > a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent 86%, rgb(8 16 7 / .23)),
+              linear-gradient(180deg, rgb(255 236 189 / .12), transparent 19%);
+  pointer-events: none;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.image img {
+  display: block;
+  height: 100% !important;
+  max-width: 100%;
+  object-fit: cover;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .rewatching {
+  grid-column: 1 / -1;
+  grid-row: rewatching;
+  justify-self: center;
+  position: static;
+  width: auto;
+  padding: 1px 4px;
+  transform: none;
+  border-radius: 3px;
+  background: #e9dcad;
+  color: #54411f !important;
+  font: 600 10px/1.5 "Segoe UI", sans-serif;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .content-status {
+  position: absolute;
+  top: 19px;
+  left: -27px;
+  z-index: 3;
+  width: 110px;
+  margin: 0;
+  padding: 3px 0;
+  transform: rotate(-45deg);
+  background: linear-gradient(#813d26, #5f291b);
+  box-shadow: inset 0 1px rgb(249 219 142 / .7), inset 0 -1px rgb(254 222 152 / .62),
+    0 2px 5px rgb(41 23 15 / .5);
+  color: #fff1cd !important;
+  font: 700 9px/1.35 "Segoe UI", sans-serif;
+  letter-spacing: .04em;
+  text-align: center;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title :is(.add-edit-more, .icon-watch2) {
+  position: static;
+  float: none;
+  display: inline-block;
+  width: auto;
+  height: auto;
+  margin: 0 !important;
+  color: transparent;
+  line-height: 1.3;
+  z-index: 2;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .add-edit-more {
+  grid-column: -2;
+  grid-row: footer;
+  justify-self: end;
+  text-align: right;
+  white-space: nowrap;
+  font-size: 0;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .icon-watch2 {
+  grid-column: 3;
+  grid-row: footer;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .icon-watch2:not(:has(a)) {
+  display: none;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .icon-watch2 .ml4 {
+  margin: 0;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .add-edit-more span {
+  display: inline-block;
+  width: auto;
+  height: auto;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title :is(.add-edit-more, .icon-watch2) a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 24px;
+  min-height: 24px;
+  padding: 0 4px;
+  box-sizing: border-box;
+  border: 1px solid rgb(236 199 127 / .26);
+  border-radius: 4px;
+  background: linear-gradient(180deg, rgb(255 228 167 / .13), rgb(22 41 23 / .29));
+  box-shadow: inset 0 1px rgb(255 232 169 / .14), 0 1px 2px rgb(10 20 9 / .27);
+  font-size: 11px !important;
+  color: var(--holo-cream) !important;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title :is(.add-edit-more, .icon-watch2) a:is(:hover, :focus-visible) {
+  background: #e6c27c;
+  color: #332219 !important;
+  border-color: #efd9a1;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.title .add-edit-more a::before {
+  content: none;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.status {
+  position: absolute;
+  grid-column: auto;
+  grid-row: auto;
+  inset: auto 0 0;
+  z-index: 1;
+  width: auto !important;
+  height: calc(var(--footer-height) + var(--footer-detail-height, 0px) + 3px);
+  border-radius: 0 0 12px 12px;
+  background: linear-gradient(168deg, #3b5036 1%, #2b402e 40%, #1a2c21 97%) !important;
+  pointer-events: none;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.status::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px rgb(250 212 130 / .55), inset 0 2px rgb(250 212 130 / .13);
+  background: var(--holo-paper, none) 0 0 / 100px 100px repeat;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.score, .progress, .number) {
+  grid-row: footer;
+  position: relative;
+  z-index: 2;
+  inset: auto;
+  height: auto;
+  min-height: 27px;
+  align-content: center;
+  line-height: 1.3;
+  color: var(--holo-cream);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 1px 2px rgb(0 0 0 / .73);
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.score { grid-column: 1; }
+body.ownlist.anime .list-table .list-table-data > .data.progress { grid-column: 2; }
+body.ownlist.anime .list-table .list-table-data > .data.number { grid-column: 4; }
+
+body.ownlist.anime .list-table .list-table-data .data.score a::before {
+  content: "★ ";
+  font: inherit;
+  color: var(--holo-gold);
+}
+
+body.ownlist.anime .list-table .list-table-data .data.progress span:first-child::before {
+  content: none;
+}
+
+body.ownlist.anime .list-table .list-table-data > .data.progress {
+  white-space: nowrap;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.progress > div[class*="progress-"]::before {
+  content: "EP";
+  color: var(--holo-gold);
+  font-size: .85em;
+  font-weight: 750;
+  margin-right: .35em;
+}
+
+/* Completed entries can omit the denominator from MAL's rendered markup. */
+body.ownlist.anime .list-table .list-table-data .data.progress
+  > div:not(:has(> .icon-add-episode, > input, > span:nth-of-type(2):not(:empty))) > span:first-of-type::after,
+body.ownlist.anime .list-table .list-table-data .data.progress > div:not(:has(> span, > input, > .icon-add-episode))::after {
+  content: var(--holo-episode-total, none);
+  color: var(--holo-muted);
+}
+
+body.ownlist.anime .list-table .list-table-data .data.progress .icon-add-episode {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 26px;
+  min-height: 27px;
+  color: var(--holo-gold) !important;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.progress .icon-add-episode:hover {
+  color: var(--holo-cream) !important;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.progress input {
+  position: static;
+  box-sizing: border-box;
+  width: 46px;
+  max-width: 100%;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.score select {
+  appearance: none;
+  color-scheme: dark;
+  box-sizing: border-box;
+  max-width: 100%;
+  min-width: 0;
+  height: 23px;
+  padding: 0 12px 0 4px;
+  border: 1px solid rgb(255 226 154 / .52);
+  border-radius: 4px;
+  color: var(--holo-cream);
+  background:
+    linear-gradient(45deg, transparent 50%, var(--holo-gold) 50%) right 6px center / 3px 3px no-repeat,
+    linear-gradient(135deg, var(--holo-gold) 50%, transparent 50%) right 3px center / 3px 3px no-repeat,
+    #263b28;
+  font: 650 11px/1 "Segoe UI", system-ui, sans-serif;
+  cursor: pointer;
+}
+
+body.ownlist.anime .list-table .list-table-data .data.score select option {
+  color: #fff7df;
+  background: #263b28;
+}
+
+@media (forced-colors: active) {
+  body.ownlist.anime .list-table .list-table-data .data.score select {
+    appearance: auto;
+    background: ButtonFace;
+    color: ButtonText;
+  }
+}
+
+body.ownlist.anime .list-table :is(.add-edit-more .more, .list-item > .more-info) {
+  display: none !important;
+}
+
+body.ownlist.anime :is(a, input, select):focus-visible {
+  outline: 2px solid var(--holo-gold) !important;
+  outline-offset: 2px;
+}
+
+@media (max-width: 1150px) {
+  body.ownlist.anime .list-table { --holo-columns: 2; }
+
+  body.ownlist.anime .list-table .list-table-data {
+    --card-min-height: clamp(212px, 24vw, 252px);
+  }
+}
+
+@container holo-card (max-width: 410px) {
+  body.ownlist.anime .list-table .list-table-data {
+    --info-gutter: 4px;
+    --footer-height: 28px;
+    --footer-detail-height: 28px;
+    grid-template-columns: minmax(28px, 1fr) 28px 34px;
+    --title-lines: 5;
+    --footer-gap: 4px;
+    --card-top: 12px;
+    padding-left: calc(var(--poster-inset) + 8px);
+    padding-right: 8px;
+  }
+
+  body.ownlist.anime .list-table .list-table-data > .data.number { display: none; }
+
+  body.ownlist.anime .list-table .list-table-data > .data.progress {
+    grid-row: footer-detail;
+    grid-column: 1 / -1;
+    box-shadow: inset 0 -1px rgb(255 226 154 / .13);
+  }
+
+  body.ownlist.anime .list-table .list-table-data .data.title .icon-watch2 {
+    grid-column: 2;
+  }
+}
+
+@media (min-width: 2100px) {
+  body.ownlist.anime {
+    --holo-grid-width: min(2320px, 88vw);
+    --holo-heading-width: min(1120px, calc(68% - var(--holo-gutter)));
+    --holo-mark-width: min(760px, calc(69% - var(--holo-gutter)));
+  }
+
+  body.ownlist.anime .list-table {
+    --holo-columns: 4;
+    --holo-column-gap: 26px;
+    --holo-row-gap: 26px;
+  }
+
+  body.ownlist.anime .list-table .list-table-data {
+    --poster-width: min(40%, 218px);
+    --card-min-height: 310px;
+  }
+}
+
+@media (min-width: 2561px) {
+  body.ownlist.anime {
+    --holo-banner-right: max(0px, calc((100% - var(--holo-grid-width)) / 2 - 240px));
+    --holo-banner-left: max(0px, calc(100% - 2560px - var(--holo-banner-right)));
+    --holo-banner-position: center top;
+    --holo-banner-edge: linear-gradient(90deg, transparent, black 22%, black 87%, transparent);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  body.ownlist.anime .list-table > tbody.list-item {
+    transition: transform .16s cubic-bezier(.23, 1, .32, 1);
+  }
+
+  body.ownlist.anime .list-table > tbody.list-item:hover {
+    transform: translateY(-2px);
+  }
+}
+
+body.ownlist.anime .header .header-title::after {
+  content: "MYANIMELIST";
+  display: block;
+  color: #4c5b3f;
+  font: 750 11px/24px "Segoe UI", sans-serif;
+  letter-spacing: .18em;
+  text-shadow: none;
+}
+
+
+body.ownlist.anime .list-table .list-table-data > .data:is(.score, .progress) a {
+  color: var(--holo-cream) !important;
+}
+body.ownlist.anime .list-table .list-table-data > .data.number {
+  color: #c9d5b5;
+  font-size: 10px;
+}
+body.ownlist.anime .list-table .list-table-data .data.title > .link:hover {
+  color: #ffe29a !important;
+}
+body.ownlist.anime .list-table .list-table-data .data.studio::before {
+  content: "Studio:";
+}
+body.ownlist.anime .list-table .list-table-data .data.airing-started::before {
+  content: "Aired:";
+}
+body.ownlist.anime .list-table .list-table-data .data.airing-finished::before {
+  content: "Until:";
+}
+body.ownlist.anime .list-table .list-table-data .data.season::before {
+  content: "Premiered:";
+}
+body.ownlist.anime .list-table .list-table-data > .data:is(.studio, .season, .airing-started, .airing-finished):empty {
+  display: none;
+}
+body.ownlist.anime #status-menu #search-box input {
+  background: #fffaf0;
+  color: #26382b !important;
+  border: 1px solid var(--holo-border-gold);
+  border-radius: 4px;
+  box-shadow: inset 0 1px 3px rgb(70 45 20 / .2);
+}
+body.ownlist.anime :is(#status-menu, .list-table-header) a:focus-visible {
+  outline-color: #764b24 !important;
+}
+@media (prefers-reduced-motion: no-preference) and (hover: hover) and (pointer: fine) {
+  body.ownlist.anime .list-table .data.image img {
+    transition: transform .35s cubic-bezier(.22, 1, .36, 1);
+  }
+  body.ownlist.anime .list-table .list-item:hover .data.image img { transform: scale(1.035); }
+}
+
+body.ownlist.anime {
+  --holo-dialog: #243526;
+  --holo-dialog-header: #19291d;
+  --holo-dialog-line: rgb(255 226 154 / .30);
+}
+
+/* Episode discussion and streaming panels in the list document. */
+body.ownlist.anime .mal-modal:is(.broadcast-sheet, :has(.modal-vote-score)) .mal-modal-dialog {
+  max-width: min(640px, calc(100vw - 32px));
+}
+
+body.ownlist.anime .mal-modal:is(.broadcast-sheet, :has(.modal-vote-score)) .mal-modal-content {
+  background: var(--holo-dialog) !important;
+  color: var(--holo-cream) !important;
+  border: 1px solid var(--holo-dialog-line);
+  border-radius: 12px;
+  box-shadow: 0 14px 40px rgb(12 20 11 / .38);
+  overflow: hidden;
+}
+
+body.ownlist.anime .mal-modal:is(.broadcast-sheet, :has(.modal-vote-score)) .mal-modal-header {
+  background: var(--holo-dialog-header) !important;
+  color: var(--holo-cream) !important;
+  padding: 15px 18px;
+  border-bottom: 1px solid var(--holo-dialog-line);
+}
+
+body.ownlist.anime .mal-modal:is(.broadcast-sheet, :has(.modal-vote-score)) .mal-modal-body,
+body.ownlist.anime .mal-modal:is(.broadcast-sheet, :has(.modal-vote-score)) .mal-modal-body :is(.modal-vote-reply, li) {
+  background-color: transparent !important;
+  color: var(--holo-cream);
+}
+
+body.ownlist.anime .mal-modal:is(.broadcast-sheet, :has(.modal-vote-score)) a {
+  color: var(--holo-gold) !important;
+}
+
+body.ownlist.anime .mal-modal .modal-vote-score li a {
+  background: var(--holo-paper, none) 0 0 / 124px 124px, var(--holo-leather) !important;
+  border: 1px solid var(--holo-dialog-line) !important;
+  border-radius: 5px;
+  box-shadow: var(--holo-leather-edge);
+  font-size: 14px;
+  padding: 10px 12px;
+}
+
+body.ownlist.anime .mal-modal .modal-vote-score li a:is(:hover, :focus-visible, .voted) {
+  background: var(--holo-honey) !important;
+  color: var(--holo-ink) !important;
+  box-shadow: var(--holo-metal-edge);
+}
+
+body.ownlist.anime .mal-modal:is(.broadcast-sheet, :has(.modal-vote-score)) .mal-modal-header :is(.close, button) {
+  color: var(--holo-cream);
+  opacity: 1;
+}
+
+/* Completion prompts identified by their existing action controls. */
+body.ownlist.anime #fancybox-wrap:has(input[value="Set as Completed" i]) {
+  position: fixed !important;
+  box-sizing: border-box;
+  inset: 50% auto auto 50% !important;
+  transform: translate(-50%, -50%);
+  width: min(440px, calc(100vw - 24px)) !important;
+  height: auto !important;
+  padding: 0 !important;
+}
+
+body.ownlist.anime #fancybox-wrap:has(input[value="Set as Completed" i])
+  :is(#fancybox-outer, #fancybox-inner, #fancybox-content, #fancybox-outer div:has(input[value="Set as Completed" i])) {
+  box-sizing: border-box;
+  position: relative !important;
+  inset: auto !important;
+  width: 100% !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+body.ownlist.anime #fancybox-wrap:has(input[value="Set as Completed" i]) #fancybox-outer {
+  background: var(--holo-dialog) !important;
+  border-radius: 10px;
+}
+
+body.ownlist.anime .list-table-data:has(:is(input, button)[value*="Set as Completed" i]) {
+  overflow: visible;
+}
+
+body.ownlist.anime .list-item:has(:is(input, button)[value*="Set as Completed" i]) {
+  z-index: 6;
+}
+
+body.ownlist.anime :is(div, form):has(> :is(input[type="button"], input[type="submit"])[value*="Set as Completed" i]):not(:has(> .list-table)) {
+  box-sizing: border-box;
+  max-width: 100%;
+  height: auto !important;
+  overflow: visible !important;
+  padding: 16px 24px !important;
+  background: var(--holo-dialog) !important;
+  border: 1px solid var(--holo-dialog-line);
+  border-radius: 10px;
+  color: var(--holo-cream) !important;
+  box-shadow: 0 10px 30px rgb(12 20 11 / .38);
+  font: 600 14px/1.5 "Segoe UI", system-ui, sans-serif;
+  white-space: normal;
+}
+
+body.ownlist.anime :is(input[type="button"], input[type="submit"])[value*="Set as Completed" i] {
+  min-height: 36px;
+  margin: 8px 3px 0;
+  padding: 4px 9px;
+  border: 1px solid var(--holo-dialog-line);
+  border-radius: 5px;
+  background: var(--holo-leather);
+  color: var(--holo-cream);
+  box-shadow: var(--holo-leather-edge);
+}
+
+body.ownlist.anime :is(input[type="button"], input[type="submit"])[value="Set as Completed" i] {
+  background: var(--holo-honey);
+  color: var(--holo-ink);
+  box-shadow: var(--holo-metal-edge);
+}
+
+body.ownlist.anime :is(input[type="button"], input[type="submit"])[value*="Set as Completed" i]:hover {
+  filter: brightness(1.15);
+}
+
+/* Edit and update confirmation use the list's Fancybox frame. */
+body.ownlist.anime #fancybox-wrap:has(#fancybox-frame) #fancybox-outer {
+  background: var(--holo-dialog) !important;
+  border: 1px solid var(--holo-dialog-line);
+  border-radius: 12px;
+  box-shadow: 0 18px 56px rgb(12 20 11 / .5);
+}
+
+body.ownlist.anime #fancybox-wrap:has(#fancybox-frame) :is(#fancybox-content, #fancybox-frame) {
+  border-radius: 11px;
+}
+
+body.ownlist.anime #fancybox-wrap:has(#fancybox-frame) #fancybox-close {
+  top: 8px !important;
+  right: 8px !important;
+  width: 30px !important;
+  height: 30px !important;
+  border: 1px solid var(--holo-dialog-line);
+  border-radius: 50%;
+  background: var(--holo-dialog-header) !important;
+  color: var(--holo-cream);
+  text-align: center;
+}
+
+body.ownlist.anime #fancybox-wrap:has(#fancybox-frame) #fancybox-close::after {
+  content: "×";
+  font: 600 23px/28px "Segoe UI", system-ui, sans-serif;
+}
+
+body.ownlist.anime #fancybox-wrap:has(#fancybox-frame) #fancybox-close:hover {
+  background: #455d3d !important;
+}
+
+/* Holo theme artwork and cursors. */
+html:has(> body.ownlist.anime) {
+  --holo-wheat: url("https://i.postimg.cc/pXRNtX2F/wheat-divider.png");
+  --holo-wheat-west: url("https://i.postimg.cc/yYsqzYVP/wheat-west.png");
+  --holo-wheat-east: url("https://i.postimg.cc/jdtVrdsz/wheat-east.png");
+  --holo-paper: url("https://i.postimg.cc/cH7c0WhS/harvest-paper.png");
+  --holo-fallback-art: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHgAAAB4CAMAAAAOusbgAAACQFBMVEVeLhhZMR1bLRxpUCueVCFuWi0iFyRQKRmaWi8vIh3ZmmTk2KBqUSoiGBSOb1Krl2KUXi9qTh9ycGkdExGyn4uIORyiOxP/+HmMaCubkDrcuZkAAGD/eiT/cXGZck32sWyqqlWbakamklSvqR+DOiCLakN1Zk/ly17KiT7d0NP//7SejjkAAP/pulnBezwA/wD/qv8zZjPMzMz/qqr/vz9//wBVqlXMMzN4Y1gAf1UA//8AAAC2p0iSRifHuFXWyWSpWDRUSBPJd0nj122smEdoWBmzYzv45dGolztoKRSLdjBzNBr+88zQw1zd0ml4ZSfOhU9MOQ+YeEZUJhGJaTWrh0pxYxyXhjWTVTBwVyoGAwiJPSFUGgxUAAC6a0HMmFMJBQz+9+uFOR0rGRYoGhZ/AAD557Szd0Y3AAEqGxc2JxgpGhbWtmi9sU3CbEJvOiPrumXLplZsSSlcURbz3cwpGhV/fwCchEb96eL//wArGBYsGxXv15Pwxm46OgIbExLotVwyJRv/AAA0JBYWFBVQJxjv17LPqW0XFRUxGBTqy6tVVQCkijpPJhf////oyY80IxbVt5BzOAo0JRqjTCyRakOydjqSRyhzNBxLKBiqVVU5JRZMJhlPNyRwOCJuSBkOCg4xJhEbExOwoT1PKRsaHBQ5OTlyOTdpNiQbFBRQJRVxViuNRShSKChLNhfDaDyTUzJMGgtVRxZVVVWjVzTt4nRaRSvkqFl7ciYTFRfIqZE5JBhFNhhkKxVpKxSSRyZTZK8lAAAAwHRSTlMboGOhEBEa1qNX+/3X4tv8aGUFnPGgDQPZ+O8EAwKkAwMcowXNdPb9/tEDrgFh/wEDBQUDBAIDBYoGAQD8+vz8/Pv8/Pz8/Pz8+vz6/vz8/Pz7/Pj9/fz8+/st+/sD+/1O/PxRkAL9/QWv+nD8/f34/v35/Pz1Av39AS3K/fwF8/0vAXJyt/z7TQ/7A/zPAf2R/AtO/Pv80tMuA7CQ9tP8bRCw/HUKBAWOkU/Srgdu/s8vxwPQ+//7/DL50K6KSkbKuClwAAAUDUlEQVR42u1bB1fb2LZ2wUCo6ZMySabP3PJ6f0eSZVuWLQlbLpItF9zBgE0PvYdOqAEC6b333JRJnb/29jFJJnNDAmZ46663XrTiEJo/7fbtb2+dqNDf6FJ9Bv4M/Bn4M3DFmw8Vvwu4/P+KxWBm50AO/lckUvU7gC8M6rKFfjWcuHxMh7bd0uairzYIXIWqa4rjWcF+qRZejcVVX6CDM43qK+joRoEvOn0tN7av8zenv/pXdFPJRwfKj6LUzsqwL45ObhQ4XjNTWFy8Zf1JlqK3oi8R8j8qSBcY8/zozoaBR8ssPxQn1jZ6PJWI56rQfOi+H6k6L5I/zVhG2evoj1UbA04BcFnZzpq1jD6JTuzZ+Yd9+bvOn6XV53c9Ikk2XZh2kJqNubocxVvCAFxW+KS4WvUp5JNoXDtX2d1QpwgxRalzGI1GR9jBsrTmHaFkV06qvuOVZWWWsrLSlr5PGn0ERfhwI2U00mRdgQMuY8gIwPcU9bqR/wo4CcAYufBJX/UnuGU7uqCV06NJJQmY2GAj7Whw0Av32MuqI4B8JUvgEyvAGLqwraVv/uNGt6Id0oiFYTGmI2NyEm6AZuvIByjnqO7ECVVWwLpiqbvs7TUHRg98nCsje/ZZGIANhwEZPrI0IEOYZ9GXKnQi0blWSf72zi42Fb7FtZRVyjV9gx8xuuLkFTWNAcPpRoAMsSGaZB0h2mgEkxFKVHeiO/+dBXCx71eLIdINTR+NdBWKLBvDjQ7IZpoGQ+kFEqMqLPsoP/87dzy3qjOVupoFcE/Z+1c3GJ1a9ff+gm4uFqQbjWyIZY1JFsxlyRC8SEUh65c18Ladia5XOfBz6wAuRzecb4ErKy1wlVU2+GpWiXRFOVItOdJhCCrgGsMOY7jBQdKQXjTJVUf8Kz91WniNrq0POFXTv5LW3ZUjDT1wNTSGn7S0fFAdx1rR7YVkOMQmk2zIyDb2NDCy9ERyJOlQKHAT/Qfm7Bz0C3kZ5Rw7cHI9Fq8AVzb0RKP9YZn3nanpq579sFUe6U0FwEBAlXGG6XuSZ1rcUhLKmXXQp9GBaxVHjgCwokGHyo+cPIoZ59PAQxjYMtPf31D2/Kem4os7Ip26VSkz537eWfAxvTBX+WPPiKW7UeHYiYJ7maLKUPb0AYSGyRyUkSfowLE1kmu+Ra6sbOhvAOTjLN+i+ogQ60CD5GltKBSi7xWMNuot7ZbKiX0T7aPH66CojI7j1/2Q9X41ORxPqW/n56cg5sc+DTzQwvT097tkwH5KO85c7LiwWnjuINVyXvw2lBG56HMKScjC9vZouyWdNNIC1JYxVHIwP3+JJLuqu6aW65uaSvI1qPXIp4ChPfWEn/S1hAFZZvm+1ZkrkzaRYYhywFlSEiuwWA7Dn8OWNFAXR0JJQY3RtLI0PDs4/+yZP5XvKLivQUeOfMriPtnVUjzfVdPf358xeVXeOok05C9jF6cCJMk9nyiwZK7DFnA1AAeAxGIcx1Wf73z7u+O3nz79zg/8/nHg8ZaaloQOmkUTmOxgpdVNbkWaQM5Y9dBlAG6ai2J74RW1JOmCEBejsb2BFymVSqdTaTQ6laqq6mBBKPHJGF/p6hrAdDjfx/f0O+inZy6uxjzH0GtBc2029VogyWAJBBcDRy0uN10QjoGv6zCF0ktLLhew6J773yXQrjrH0gOk+4SgH7+AnVuFEi3y37OyVFN9bdXa75yavXNi6HQMolzvmoniy1LqDpLhMMkJGeq+V8dKsmzMdC7pNkcaWRU6sI5JQtdVI/mK+xIfuLpCdwihL1Rj1YMoXo+LR3GfK9k5N/e8QHHD2zuUQAySq44OsHPPGX2YZsNPHY46+NKjtzW9xggz0FLTl/jwm+8kuz8Sv82C8qGNdL3T7fQpxx1cUIDPBEg5mg6xk3MjM2mZpY+DyfCHXoZi7uhdx+w0nxr4kDugIh5sheuXX3I0ZzFJBQUsfsiaekcPRQbdQp1R4EiaJB3d3dRMIdxAiIyRUNkOlps6fWLDQxuoKQ3kS4hWoP2xkL4CN2kjrCGj5JNNJvmJ4RxppMHjMVJf1t5NKAGsSiAEMfKeUeFiUylV6zqAV9Hm0+i68anx7KnhKSGg0ApNBiW9SV/rMtYpnlJL2uyleLKODHKcYimUSQgsG6oLN7BBLhCgQ6dPqAU1+rJ1AxbnIA1rLNL4/cjfRYbgfbk8r52i9ESybpJ3lRJeyrTXWU8L7qaC9lIhKCzU1YXqoFmz7tOX8+j7X+9eqo+8U7+qrBx920hG8B3sWqJpdz3NSYTNpqcIOSRTBE8QlN5rCJJkfZt+ZtEpCJywgDuYMQztMXKW1aD4mfyv30qDLIDLUaSIHB4Hw9X3aFrYcTag2Ex6E+W1EslQ2iQfl/V2gsd4hCnc1HyO44KQaMY6NuwAnR+vP/tAQ/5aVFkB+5cDY/CLl5tIN6mOqBXCbrLXeszWMMtSdiZWz5j0gBw0U6a0t+gcRwoQbqCOOocCwi0R2HWbfPWuUrIAhvaySwA14s9XdlST1/1awmSz1Yo1BuvxheO1FO/O89VSjFVwEnq7nuKdHEkK7iBHY9F7G6aFpVjX2PiGyqkKDXSBYD7fdD9yMzC1o8iut1E/u4NujwLAhLmm2OCVXVaz126zEbybEwSSztuhJlk65LgfQbuX3UPvic4s6/hZInVyrH5pPDdP8hJ6PcYNumMBialloLZJiRetVpvJRsnuIA42SWr8wyTNGpvOg6/rt2KVuMGtT2cu2q/mtN8QepMN47qh9QpSLUVRdCAWIEXeStj0NsIX5AT4ToDOR3G3AtytRqph4fJ7DSr7dZN/8BbP2EwmPUV5IXOFGOfm9VBVktOpSD4AhsIW3e4ACdxN0lo/qgbuXtiFjsWm/Gj/BoF121XfHwQfPwZvUoRXu0wCPXJBH2WCT/d6L3nd5wAY8gwMJs9WuwO0FuUmgLyF4c7UsuZ9lZsN8EnYjZziTY/tNj2El+Afok71EgY2EGA++MDG5wUVhuCdQVxHS+cB8jo6MSXQC+4b8cRY+UabxHQO2uZzMRBdykZZxfplFVLFhwXObbZSenxRSjAYNJshoSHXFx5FbtJnIlc0XBdJTg3ljm98pdjr144ePmxstFMMRWjHtPTyiYFnuacFCfIbR5kCwoTbgO4YC7Zw9P3ILFT77KnB6sBy6tiGd5kdKJK/b8ISnfNJBGXltQMo57qbGx5AGkkmsMG2Wiv4GJIZN6OWiwJ9totT5wxc3rKFy5v/sLevF/gk0pVMdFuiM3yzz2q9tc0Pd4Lir26isVuMy+tlaiHXCMKXFxSmutwxsmvou8CLU3haRed3AFP/UbdRi6fR3Z6RucqJPQ/FPbw2gkVQB/7617ckr4thZCtjJfQ/Al/F7g5NxcjUefJs5ALq/P7vvin5YetWWCGh3eUbAb6GBm7pJ59P5Pvj2j3bEPr3zLuocvwlDO8Di0tLGYaiGN4scDf9UySZ6hK2QuZVN8kzUcu+0ZLvt23Q4q+RzsWE5Vt+tL1XhaYzsK1Xv0I3RIJxuUSPxyy64KPZ7KzO7cwjuS7u1ZUvOxOJi00ExCcarWTUD479ecVJWQGX48UWY+UfZmblv1Tgd7j2Beos8khtDMO4JIPZyoDBHvMWpOamEomb8Ma6Z0O3GMqE9X40OvFIM3ZheiMx3qanrBSxZwh/9i+Hvs3MeCWTvM8stslJF8g9AgN7ZlOn1LlXxvGg40+I4YaeQpjnDmPkvBfb0PYN1PEOuwkaD9H2p8GVFYf/7p/2QlwJgvf5RFE0+3gRbkJ6cT73v7A7ylGO5vT3B4uk8ExmxGmPuiTXNpSTpdjTodwivYmoBWq0tWm12m1bv/mGAQIzmUyU1buX572iwWBwGn4Wu/zwfCKzfjm2G1bZkTzQ2Cvz5ES6Z+f49MnsgL9A2yiTnSDsdoaw6wmGIWy4PWU4mzLZoBV6m5t8BgPw5cuXeWeKtJpMIm0/hDT1rGOkHQ+U7d1lf/Cj6eyAp/1ak8lO1YKoYcDhIG0IYpKx2QAWqBs3Z6/ZJfNm6IAK5JvVql6ZO8a3R86w9L6ywysT5fOhLIF16K73MYazgaEMtAToRND7gZ/19hVcwuuBtmSG4Yk85530eNQrkuUOzPB1LFX5Brgw7902ZF3AsBrMB4MBGS4IKpAU/tRkxy8KvG4nJq2gcvlzCywpOH++ZJXU/o4qVKWCFcw9Y4iqzMzQluiIEt/fsX5gmPG0BIX1ugmA7XbCi2XGO1zoxARcjGuSULiAwDkNPCOrUWb14FeDpA/NVI60W7pHLNEJKS8XXV0vMChDLWXHhQMYIAKws8FoCssB6MsEJDYkFwDzBHMu6ISh1SCKs5mK09xP4o324e4eAD5sKUtLi1+/0V2qdeHqH2Mf2wjChtWHycZMEhgabgaLSqoWR55xLTLUpNPQ7OYMTvfw9ev52iJQ1IDsmNDPtMMyzNJNlZbo3owSqvX4Wf+YYMBcO0yGuITsJsrlvQSY+ALVAxG3E1ZClqCgPSIIEBADsBcgYTqmAdrYGIYgV45Y2ue6R9496lgLeP90rzaMCxcu8DT8i7LjMIs8fAEDQyOGO9F7RYbBHNJsBaUnBGAtQOLVAI6wI3x8Ljqit0N2jRSo3m6d1gL+Cm0FUvR4JBlD14JLiUyKEaIku1xW3IZtdqgzL7QnnxMIxMqDoBZg6wPzM35kAS+2sdJiS4+0dxeWzqqmK9YFfBX5i7xmJ5jiw5IZCMuGOQvcTbl8ohXbDG6w24hJyQusCXr+0s+wEsDGhnBaGevA3cmRQn2jvn3GRBWh6aPrI5DtubNOgxNbAkRs5q3gbrAQkCDUDM/zIgzjkOmEFWiM8vJembnE18O0BnJboevwHp2mk/ruhp9GK2caqZItv25v1nJ17kOM6IGcwT1AbCMuvQkyeDzN8B4vONpGZAw3ETjhiLYmPLpAiAML4G6FNjamw2yycKKx33UX6TrWB1yB/C/BWOjvnoy/nWYINKW3QTZBaeECBibJ4EL7AC7B3eNnPCfGFHhIABsaGswO0Qt0Wh9Oj2r9h8rX24+voogTgEUPdjU0H49PYvDUYM8QJ+6KwCE40hB46Fq1lMsq4qwWYvTbC0ynw2mHo1GMv79UXJtAInlmjySZMapZ4g0GxpQpXPsbZNynsMIEHgfm1DNiMwxOMJLDjonOWB0gWUZmjYxvHl3NTuxpJI8orgD7fM5mK8SUsuMSIi5dkuVaaFF2fbqRwu0DHC+58YAKyHDhQGN4RbnHaufRbxbHawG3Il0+4wJMg0ESDc1mAw/zCs4srD0grSczWU1RYaYWBx62H/UwkuOtC0AHMkQCKR7Azym2ZyVvv0VanpcyBreJBh/vdckUtgwmpVqcSviqxYTKwNczQSB8bi7jbbAXrI7FYsLZXXG/SpetrtZ6IJnNuNf5DD6Zkl1QyjCzZHqViYLW4GJKvXDxDN7yUdBPJJgZg0AjChkTBLd76sbQWHwwnpsdcAe6a2huxszlcjWbzSLYR2ENjxMLh7nNxbsks9ncbDBLuGlCgzSlJZgYW1rcAvayu+vU6erq6nhV9pPErMHjaTaILhGnl2jFTQr6IYU1nxXLHTFTacBvjAmXNwEDnNzUUp2Idw5Wc3gFI7wYVF3YwAhTpTmVMdiTSWwRXJ3GljIQYisvmj1eKfMNAwBDebd54c5MVHHkW7zveHDz9evXqhNXNnjWJ2L2gMGi00kqHs+iS5bb+EWXlWnjRWcTbh0ZX5h5CvPJovdHLIcY9SoPubIE7v23gZdm3gUEljQmRRgWRAkGNC8MDmCpl7lEEF4IstMMrZlaSXDrpNzoUqPWqqo7u3N271b1bvh0k19d5DOfG+2hGJmEniGKkuTDcRUzyU0RHoNH5L1tDCZwRuIZr+iTfIN/9aRpY4O5v8s8aqlsaJQVd43ZYzCsMKgVNwlIbskJ6d4GJQ6JJ/tEyeyEVvoSdbT+buBD6K6MpUtYwd2Rt+LGYYYNdYak7TZZhIa5YjwMq7j64Mfim3GQ7J/Rfx7Gk4CUaY4iYeUXIaswFJC2Xd8IRSW6QAvBsEx4cXk1OxP7y38/MCy4RqNYj2d6IxA2rB2wxMftCWT9Y9NeoHGIKyDzPLCcx+NMbMbROXgYfLAyCpsmJ5AXyBGDk8dsDZ6FZszI/N7GNqBVgBZ9sI3At/YwtSln9r5CidJodKd2xymsguBlcDZJVgYIus21SAdqnD5fcybdgOAk3uN8qPZvymHBCrTFN3p4JzjPP5v38OEsEFmzISMADZLsCJ3DdNkMCpgXPbzsWmw6tSUX9W6Kxf48SVaqM4+iLoxfyB2PvFghZ2dTuGFUxreBPSEBuQGxvjh/AbWWb4LFR2G3I8uhJT/ea2CR+A8wb88Pzg6qtpxiJ6Jz4kpRezx5WzSDOwbnwcsVrZtwLhN8Vr0vOnfrzRmx3taj5e+08daesujOxOCpGrhe3l2J6360vsOKawJ/i1K+nSOlL5Huvfer6sjsRe5SZZZv0D/6I2/WLR1v7nQzgHvRWFNSOe4bQld/ezSt/ArQqOt5chvcwDvfZHGGVrXWRu/B8A9po6T98LTQP6EtZxTWHfkCVeVe7c3yAOyawB1ILfj0jWciq3lQu6g4fBF0rDfbk8ZrA7fC40Q6Jvh2+D9wIsQAzgSMKupc1FG+6cBH0fl6eJ7Eaa5+YFTHny9zpCyz8JARoU0HhvNOcAIhAKuaVWJ4uj5Wr8DBsWV1fNOBK9DYsOAens89sso3t9TAeIZPIpDusWxO3a6vnMqfDQ09+8jTvtTQ0LAg1DfVu+c3H3ituX3oRuJGIjX+v3CUveJo+ceqpaK8/G/3vwaOvPvr83/Q+Az8Gfj/HfD/AB3IBGFIxzBjAAAAAElFTkSuQmCC");
+  --holo-idle-still: url("https://i.postimg.cc/Cxxtbjbx/holo-dance-idle-00.png");
+}
+body.ownlist.anime {
+  --holo-wagon-still: url("https://i.postimg.cc/Dw23fxn3/holo-caravan-still.png");
+  --holo-wagon-chassis: url("https://i.postimg.cc/Y9C3Dm6t/holo-caravan-chassis.png");
+  --holo-wagon-horse: url("https://i.postimg.cc/Ssxr1z6y/holo-caravan-horse.webp");
+  --holo-wagon-riders: url("https://i.postimg.cc/MpWJZ9qk/holo-caravan-riders.webp");
+  --holo-wagon-wheels: url("https://i.postimg.cc/ZR5csy8K/holo-caravan-wheels.webp");
+  --holo-loose-hair: url("https://i.postimg.cc/HsN6fFf9/holo-loose-hair.webp");
+  --holo-illustrated-title: url("https://i.postimg.cc/DZr7JrKy/wolfhound-wheat-title.png");
+}
+
+@media (any-hover: hover) and (any-pointer: fine) {
+  html:has(> body.ownlist.anime) {
+    --holo-frame-0: url("https://i.postimg.cc/Cxxtbjbx/holo-dance-idle-00.png") 13 13;
+    --holo-frame-1: url("https://i.postimg.cc/fRRFYxYV/holo-dance-idle-01.png") 13 13;
+    --holo-frame-2: url("https://i.postimg.cc/8zz3LhLc/holo-dance-idle-02.png") 13 13;
+    --holo-frame-3: url("https://i.postimg.cc/fRRFYxYL/holo-dance-idle-03.png") 13 13;
+    --holo-frame-4: url("https://i.postimg.cc/vZZj5W5D/holo-dance-idle-04.png") 13 13;
+    --holo-frame-5: url("https://i.postimg.cc/P55c1m1p/holo-dance-idle-05.png") 13 13;
+    --holo-frame-6: url("https://i.postimg.cc/mggq7Q71/holo-dance-idle-06.png") 13 13;
+    --holo-frame-7: url("https://i.postimg.cc/Z55g6r6y/holo-dance-idle-07.png") 13 13;
+    --holo-frame-8: url("https://i.postimg.cc/Mpp41y1Q/holo-dance-idle-08.png") 13 13;
+    --holo-frame-9: url("https://i.postimg.cc/NjjVR1RX/holo-dance-idle-09.png") 13 13;
+    --holo-frame-10: url("https://i.postimg.cc/W11K0M0r/holo-dance-idle-10.png") 13 13;
+    --holo-frame-11: url("https://i.postimg.cc/NjCnD5xj/holo-dance-idle-11.png") 13 13;
+    --holo-frame-12: url("https://i.postimg.cc/0yX4nbCN/holo-dance-idle-12.png") 13 13;
+    --holo-frame-13: url("https://i.postimg.cc/jS31cLh5/holo-dance-idle-13.png") 13 13;
+    --holo-frame-14: url("https://i.postimg.cc/dVNf6L9D/holo-dance-idle-14.png") 13 13;
+    --holo-frame-15: url("https://i.postimg.cc/NjCnD5x5/holo-dance-idle-15.png") 13 13;
+    --holo-first-pose: var(--holo-frame-0);
+    --holo-cursor-fallback: auto;
+  }
+
+  body.ownlist.anime :where(a[href], a.link, button, select, summary, label[for], input[type=checkbox],
+    input[type=radio], input[type=submit], input[type=button], [role=button], #fancybox-close,
+    .mal-modal .close, .notes .edit):not(:disabled, [aria-disabled=true], .edit-disabled, .edit-disabled *) {
+    --holo-frame-0: url("https://i.postimg.cc/VkZhgdFJ/holo-dance-action-00.png") 13 13;
+    --holo-frame-1: url("https://i.postimg.cc/cLkzhrcg/holo-dance-action-01.png") 13 13;
+    --holo-frame-2: url("https://i.postimg.cc/dVNf6L9Z/holo-dance-action-02.png") 13 13;
+    --holo-frame-3: url("https://i.postimg.cc/NjCnD5xy/holo-dance-action-03.png") 13 13;
+    --holo-frame-4: url("https://i.postimg.cc/RZpYdNTn/holo-dance-action-04.png") 13 13;
+    --holo-frame-5: url("https://i.postimg.cc/Mp3L5vYB/holo-dance-action-05.png") 13 13;
+    --holo-frame-6: url("https://i.postimg.cc/0yX4nbCw/holo-dance-action-06.png") 13 13;
+    --holo-frame-7: url("https://i.postimg.cc/t4vckYzP/holo-dance-action-07.png") 13 13;
+    --holo-frame-8: url("https://i.postimg.cc/sgHLmvJ7/holo-dance-action-08.png") 13 13;
+    --holo-frame-9: url("https://i.postimg.cc/NjCnD5xR/holo-dance-action-09.png") 13 13;
+    --holo-frame-10: url("https://i.postimg.cc/kgYHsByx/holo-dance-action-10.png") 13 13;
+    --holo-frame-11: url("https://i.postimg.cc/P5V7yPMW/holo-dance-action-11.png") 13 13;
+    --holo-frame-12: url("https://i.postimg.cc/kgYHsByv/holo-dance-action-12.png") 13 13;
+    --holo-frame-13: url("https://i.postimg.cc/y8pGjkTT/holo-dance-action-13.png") 13 13;
+    --holo-frame-14: url("https://i.postimg.cc/9QgkbrBb/holo-dance-action-14.png") 13 13;
+    --holo-frame-15: url("https://i.postimg.cc/cLkzhrcD/holo-dance-action-15.png") 13 13;
+    --holo-first-pose: var(--holo-frame-0);
+    --holo-cursor-fallback: pointer;
+  }
+
+  /* Have a full-size, local first pose under the pointer even during hit-test changes. */
+  html:has(> body.ownlist.anime),
+  body.ownlist.anime,
+  body.ownlist.anime :where(*) {
+    cursor: var(--holo-fallback-art) 13 13, var(--holo-idle-still) 13 13, auto !important;
+  }
+
+  /* Paint the current frame on the hit element. The root's animated gates do not
+     inherit into the full list. Other elements keep the full-size Holo fallback. */
+  /* Avoid descendant :has() rescans on cursor movement + scrolling. */
+  html:has(> body.ownlist.anime):hover,
+  body.ownlist.anime:hover,
+  body.ownlist.anime :where(:hover) {
+    --holo-candidate-0: var(--holo-gate-0) var(--holo-frame-0);
+    --holo-candidate-1: var(--holo-gate-1) var(--holo-frame-1);
+    --holo-candidate-2: var(--holo-gate-2) var(--holo-frame-2);
+    --holo-candidate-3: var(--holo-gate-3) var(--holo-frame-3);
+    --holo-candidate-4: var(--holo-gate-4) var(--holo-frame-4);
+    --holo-candidate-5: var(--holo-gate-5) var(--holo-frame-5);
+    --holo-candidate-6: var(--holo-gate-6) var(--holo-frame-6);
+    --holo-candidate-7: var(--holo-gate-7) var(--holo-frame-7);
+    --holo-candidate-8: var(--holo-gate-8) var(--holo-frame-8);
+    --holo-candidate-9: var(--holo-gate-9) var(--holo-frame-9);
+    --holo-candidate-10: var(--holo-gate-10) var(--holo-frame-10);
+    --holo-candidate-11: var(--holo-gate-11) var(--holo-frame-11);
+    --holo-candidate-12: var(--holo-gate-12) var(--holo-frame-12);
+    --holo-candidate-13: var(--holo-gate-13) var(--holo-frame-13);
+    --holo-candidate-14: var(--holo-gate-14) var(--holo-frame-14);
+    --holo-candidate-15: var(--holo-gate-15) var(--holo-frame-15);
+    cursor: var(--holo-candidate-0, var(--holo-candidate-1, var(--holo-candidate-2, var(--holo-candidate-3, var(--holo-candidate-4, var(--holo-candidate-5, var(--holo-candidate-6, var(--holo-candidate-7, var(--holo-candidate-8, var(--holo-candidate-9, var(--holo-candidate-10, var(--holo-candidate-11, var(--holo-candidate-12, var(--holo-candidate-13, var(--holo-candidate-14, var(--holo-candidate-15, var(--holo-frame-0))))))))))))))))), var(--holo-first-pose), var(--holo-fallback-art) 13 13,
+      var(--holo-idle-still) 13 13,
+      var(--holo-cursor-fallback) !important;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (any-hover: hover) and (any-pointer: fine) {
+  /* Switching states changes the pictures used by this clock, without starting a new animation. */
+  html:has(> body.ownlist.anime) {
+    animation-name: holo-dance-clock;
+    animation-duration: 1.84s;
+    animation-timing-function: step-end;
+    animation-iteration-count: infinite;
+    animation-play-state: paused;
+  }
+
+  html:has(> body.ownlist.anime:hover) {
+    animation-play-state: running;
+  }
+
+  /* Only the hovered ancestry inherits the frame signals. */
+  body.ownlist.anime:hover,
+  body.ownlist.anime :where(:hover) {
+    --holo-gate-0: inherit;
+    --holo-gate-1: inherit;
+    --holo-gate-2: inherit;
+    --holo-gate-3: inherit;
+    --holo-gate-4: inherit;
+    --holo-gate-5: inherit;
+    --holo-gate-6: inherit;
+    --holo-gate-7: inherit;
+    --holo-gate-8: inherit;
+    --holo-gate-9: inherit;
+    --holo-gate-10: inherit;
+    --holo-gate-11: inherit;
+    --holo-gate-12: inherit;
+    --holo-gate-13: inherit;
+    --holo-gate-14: inherit;
+    --holo-gate-15: inherit;
+  }
+}
+
+@property --holo-gate-0 { syntax: "*"; inherits: false; }
+@property --holo-gate-1 { syntax: "*"; inherits: false; }
+@property --holo-gate-2 { syntax: "*"; inherits: false; }
+@property --holo-gate-3 { syntax: "*"; inherits: false; }
+@property --holo-gate-4 { syntax: "*"; inherits: false; }
+@property --holo-gate-5 { syntax: "*"; inherits: false; }
+@property --holo-gate-6 { syntax: "*"; inherits: false; }
+@property --holo-gate-7 { syntax: "*"; inherits: false; }
+@property --holo-gate-8 { syntax: "*"; inherits: false; }
+@property --holo-gate-9 { syntax: "*"; inherits: false; }
+@property --holo-gate-10 { syntax: "*"; inherits: false; }
+@property --holo-gate-11 { syntax: "*"; inherits: false; }
+@property --holo-gate-12 { syntax: "*"; inherits: false; }
+@property --holo-gate-13 { syntax: "*"; inherits: false; }
+@property --holo-gate-14 { syntax: "*"; inherits: false; }
+@property --holo-gate-15 { syntax: "*"; inherits: false; }
+@keyframes holo-dance-clock {
+  0%, 100% { --holo-gate-0: ; --holo-gate-1: initial; --holo-gate-2: initial; --holo-gate-3: initial; --holo-gate-4: initial; --holo-gate-5: initial; --holo-gate-6: initial; --holo-gate-7: initial; --holo-gate-8: initial; --holo-gate-9: initial; --holo-gate-10: initial; --holo-gate-11: initial; --holo-gate-12: initial; --holo-gate-13: initial; --holo-gate-14: initial; --holo-gate-15: initial; }
+  6.25000% { --holo-gate-0: initial; --holo-gate-1: ; }
+  12.50000% { --holo-gate-1: initial; --holo-gate-2: ; }
+  18.75000% { --holo-gate-2: initial; --holo-gate-3: ; }
+  25.00000% { --holo-gate-3: initial; --holo-gate-4: ; }
+  31.25000% { --holo-gate-4: initial; --holo-gate-5: ; }
+  37.50000% { --holo-gate-5: initial; --holo-gate-6: ; }
+  43.75000% { --holo-gate-6: initial; --holo-gate-7: ; }
+  50.00000% { --holo-gate-7: initial; --holo-gate-8: ; }
+  56.25000% { --holo-gate-8: initial; --holo-gate-9: ; }
+  62.50000% { --holo-gate-9: initial; --holo-gate-10: ; }
+  68.75000% { --holo-gate-10: initial; --holo-gate-11: ; }
+  75.00000% { --holo-gate-11: initial; --holo-gate-12: ; }
+  81.25000% { --holo-gate-12: initial; --holo-gate-13: ; }
+  87.50000% { --holo-gate-13: initial; --holo-gate-14: ; }
+  93.75000% { --holo-gate-14: initial; --holo-gate-15: ; }
+}
+
+/* Saved MAL community scores and episode totals by anime ID. */
+.list-table-data:has(.title>:is([href*="/anime/21/"])){--holo-mal-score:"MAL 8.72";}
+.list-table-data:has(.title>:is([href*="/anime/1735/"])){--holo-mal-score:"MAL 8.29";}
+.list-table-data:has(.title>:is([href*="/anime/269/"],[href*="/anime/387/"])){--holo-mal-score:"MAL 8.01";}
+.list-table-data:has(.title>:is([href*="/anime/481/"],[href*="/anime/34577/"],[href*="/anime/18139/"],[href*="/anime/28121/"],[href*="/anime/39555/"],[href*="/anime/49613/"],[href*="/anime/34134/"])){--holo-mal-score:"MAL 7.52";}
+.list-table-data:has(.title>:is([href*="/anime/20/"],[href*="/anime/4224/"],[href*="/anime/13759/"],[href*="/anime/19815/"])){--holo-mal-score:"MAL 8.03";}
+.list-table-data:has(.title>:is([href*="/anime/34572/"],[href*="/anime/55911/"])){--holo-mal-score:"MAL 8.15";}
+.list-table-data:has(.title>:is([href*="/anime/33255/"],[href*="/anime/54857/"])){--holo-mal-score:"MAL 8.41";}
+.list-table-data:has(.title>:is([href*="/anime/19/"],[href*="/anime/58514/"])){--holo-mal-score:"MAL 8.90";}
+.list-table-data:has(.title>:is([href*="/anime/24405/"],[href*="/anime/23755/"],[href*="/anime/24439/"])){--holo-mal-score:"MAL 7.59";}
+.list-table-data:has(.title>:is([href*="/anime/154/"],[href*="/anime/52741/"],[href*="/anime/53126/"])){--holo-mal-score:"MAL 7.73";}
+.list-table-data:has(.title>:is([href*="/anime/5114/"])){--holo-mal-score:"MAL 9.11";}
+.list-table-data:has(.title>:is([href*="/anime/121/"],[href*="/anime/37430/"])){--holo-mal-score:"MAL 8.12";}
+.list-table-data:has(.title>:is([href*="/anime/3588/"],[href*="/anime/38408/"],[href*="/anime/2924/"])){--holo-mal-score:"MAL 7.86";}
+.list-table-data:has(.title>:is([href*="/anime/877/"],[href*="/anime/16498/"])){--holo-mal-score:"MAL 8.58";}
+.list-table-data:has(.title>:is([href*="/anime/245/"])){--holo-mal-score:"MAL 8.68";}
+.list-table-data:has(.title>:is([href*="/anime/1535/"],[href*="/anime/34599/"])){--holo-mal-score:"MAL 8.62";}
+.list-table-data:has(.title>:is([href*="/anime/33004/"])){--holo-mal-score:"MAL 7.28";}
+.list-table-data:has(.title>:is([href*="/anime/52991/"])){--holo-mal-score:"MAL 9.24";}
+.list-table-data:has(.title>:is([href*="/anime/550/"],[href*="/anime/11499/"])){--holo-mal-score:"MAL 7.26";}
+.list-table-data:has(.title>:is([href*="/anime/51318/"],[href*="/anime/17265/"],[href*="/anime/35790/"],[href*="/anime/29803/"])){--holo-mal-score:"MAL 7.89";}
+.list-table-data:has(.title>:is([href*="/anime/1/"])){--holo-mal-score:"MAL 8.75";}
+.list-table-data:has(.title>:is([href*="/anime/205/"])){--holo-mal-score:"MAL 8.52";}
+.list-table-data:has(.title>:is([href*="/anime/228/"])){--holo-mal-score:"MAL 7.60";}
+.list-table-data:has(.title>:is([href*="/anime/856/"],[href*="/anime/61200/"],[href*="/anime/24765/"],[href*="/anime/28927/"])){--holo-mal-score:"MAL 7.61";}
+.list-table-data:has(.title>:is([href*="/anime/934/"],[href*="/anime/1594/"],[href*="/anime/14719/"],[href*="/anime/5680/"])){--holo-mal-score:"MAL 7.87";}
+.list-table-data:has(.title>:is([href*="/anime/2104/"],[href*="/anime/6213/"])){--holo-mal-score:"MAL 7.65";}
+.list-table-data:has(.title>:is([href*="/anime/7791/"],[href*="/anime/50602/"])){--holo-mal-score:"MAL 8.19";}
+.list-table-data:has(.title>:is([href*="/anime/10620/"])){--holo-mal-score:"MAL 7.37";}
+.list-table-data:has(.title>:is([href*="/anime/20785/"])){--holo-mal-score:"MAL 7.36";}
+.list-table-data:has(.title>:is([href*="/anime/34443/"])){--holo-mal-score:"MAL 7.30";}
+.list-table-data:has(.title>:is([href*="/anime/36754/"])){--holo-mal-score:"MAL 7.54";}
+.list-table-data:has(.title>:is([href*="/anime/38000/"],[href*="/anime/9756/"])){--holo-mal-score:"MAL 8.39";}
+.list-table-data:has(.title>:is([href*="/anime/33/"])){--holo-mal-score:"MAL 8.61";}
+.list-table-data:has(.title>:is([href*="/anime/1575/"])){--holo-mal-score:"MAL 8.71";}
+.list-table-data:has(.title>:is([href*="/anime/2904/"])){--holo-mal-score:"MAL 8.92";}
+.list-table-data:has(.title>:is([href*="/anime/9919/"],[href*="/anime/11111/"])){--holo-mal-score:"MAL 7.46";}
+
+/* SIDE WHEAT: the two existing Postimages silhouettes sway separately. */
+body.ownlist.anime .list-block::before {
+  transform-origin: 27% 100%;
+  animation: wolfhound-wheat-left 7.1s ease-in-out -0.8s infinite;
+}
+body.ownlist.anime .list-block::after {
+  transform-origin: 73% 100%;
+  animation: wolfhound-wheat-right 8.3s ease-in-out -2.1s infinite;
+}
+@keyframes wolfhound-wheat-left {
+  0%,100% { transform: rotate(-3deg) translateX(-2px); }
+  35% { transform: rotate(2.3deg) translateX(3px); }
+  69% { transform: rotate(-.8deg) translateX(1px); }
+}
+@keyframes wolfhound-wheat-right {
+  0%,100% { transform: rotate(2.9deg) translateX(2px); }
+  39% { transform: rotate(-2.6deg) translateX(-4px); }
+  75% { transform: rotate(.6deg) translateX(-1px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.ownlist.anime .list-block::before,
+  body.ownlist.anime .list-block::after { animation: none; }
+}
+
+/* Mobile: don't let the desktop card-column width shrink the wagon to an icon. */
+@media (max-width: 700px) {
+  body.ownlist.anime .list-table > tbody:first-child:not(.list-item) {
+    padding-top: clamp(140px, 38vw, 170px);
+  }
+  body.ownlist.anime .list-table > tbody:first-child:not(.list-item)::after {
+    width: min(430px, calc(100% - 20px));
+  }
+}
