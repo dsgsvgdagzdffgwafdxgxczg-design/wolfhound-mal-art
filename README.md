@@ -1,2 +1,2 @@
-# wolfhound-mal-art
-Public image assets for Wolfhound's MyAnimeList Spice and Wolf caravan animation
+# Wolfhound MAL art
+Public assets for Holo and Lawrence's wagon animation.
